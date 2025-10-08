@@ -100,20 +100,6 @@ export function ProductContextProvider({ children }) {
   let content;
   console.log("wishlist Array \n", flipkart.wishlist);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:1111/products")
-  //     .then((response) => {
-  //       dispatch({
-  //         type: "getProductList",
-  //         products: response.data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error while get request", err);
-  //     });
-  // }, []);
-
   const collectItems = (id) => {
     let selectedItem = flipkart.productList.find(
       (product) => product.id === id
