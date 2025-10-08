@@ -40,6 +40,15 @@ export function Header() {
           Sports
         </button>
         <button
+          className="myBtn px-4 py-2 bg-red-200 rounded"
+          onClick={() => {
+            showCurrentPage("electronics");
+            handlePageProducts("Electronics");
+          }}
+        >
+          Electronics
+        </button>
+        <button
           className="myBtn px-4 py-2 bg-gray-200 rounded"
           onClick={() => {
             showCurrentPage("generalProducts");

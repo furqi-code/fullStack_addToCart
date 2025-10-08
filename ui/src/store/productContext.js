@@ -192,6 +192,7 @@ export function ProductContextProvider({ children }) {
 
   if (flipkart.showSelectedPage === "cartItems") content = <ShowBag />;
   else if (flipkart.showSelectedPage === "sports") content = <SportsProducts />;
+  else if (flipkart.showSelectedPage === "electronics") content = <ElectronicsProds />;
   else if (flipkart.showSelectedPage === "generalProducts") content = <GeneralProducts />;
   else if (flipkart.showSelectedPage === "homePage") content = <HomePage />;
 
