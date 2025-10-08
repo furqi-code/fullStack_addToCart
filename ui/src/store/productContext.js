@@ -14,7 +14,6 @@ export const ProductContext = createContext({
   handlePageProducts: () => {},
   addToCart: () => {},
   removefromCart: () => {},
-  hideBagItems: () => {},
   increaseQnty: () => {},
   decreaseQnty: () => {},
 });
@@ -37,12 +36,6 @@ function reducer(state, action) {
       return {
         ...state,
         showSelectedPage: action.showPage,
-      };
-
-    case "hideBagItems":
-      return {
-        ...state,
-        showSelectedPage: action.showHomePage,
       };
 
     case "removeBagItem":
@@ -143,13 +136,6 @@ export function ProductContextProvider({ children }) {
     });
   };
 
-  const hideBagItems = (showHomePage) => {
-    dispatch({
-      type: "hideBagItems",
-      showHomePage,
-    });
-  };
-
   const removeBagItem = (product_id) => {
     dispatch({
       type: "removeBagItem",
@@ -205,7 +191,6 @@ export function ProductContextProvider({ children }) {
         addToCart: collectItems,
         removefromCart: removeBagItem,
         showCurrentPage: showCurrentPage,
-        hideBagItems: hideBagItems,
         increaseQnty: increaseQnty,
         decreaseQnty: decreaseQnty,
       }}

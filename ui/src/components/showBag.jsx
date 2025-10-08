@@ -3,19 +3,19 @@ import { useContext } from "react";
 import { ProductContext } from "../store/productContext";
 
 export function ShowBag() {
-  const { wishlist, hideBagItems, removefromCart } = useContext(ProductContext);
+  const { wishlist, showCurrentPage, removefromCart } = useContext(ProductContext);
   if (wishlist.length === 0) {
     return (
       <>
-        <div className="flex justify-center" style={{ width: "700px" }}>
-          <button className="myBtn" onClick={hideBagItems}>
+        {/* <div className="flex justify-center" style={{ width: "700px" }}>
+          <button className="myBtn" onClick={() => showCurrentPage("homePage")}>
             <img
               src="https://cdn-icons-png.flaticon.com/512/9312/9312240.png"
               alt=""
               className="h-12"
             />
           </button>
-        </div>
+        </div> */}
         <div className="flex justify-center items-center">
           <div
             id="sc-active-cart"
@@ -38,7 +38,7 @@ export function ShowBag() {
 
                 <div class="a-column a-span8 a-span-last">
                   <h3 class="a-size-large a-spacing-top-base sc-your-amazon-cart-is-empty">
-                    Your Flipkart cart Bag is empty
+                    Your Amazon cart Bag is empty
                   </h3>
 
                   <div class="a-section a-spacing-none sc-shop-todays-deals-link">
@@ -68,9 +68,9 @@ export function ShowBag() {
 
   return (
     <div className="mx-auto" style={{ width: "570px" }}>
-      <div className="flex items-center">
+      {/* <div className="flex items-center">
         <div className="">
-          <button className="myBtn" onClick={() => hideBagItems("homePage") }>
+          <button className="myBtn" onClick={() => showCurrentPage("homePage") }>
             <img
               src="https://cdn-icons-png.flaticon.com/512/9312/9312240.png"
               alt=""
@@ -81,7 +81,7 @@ export function ShowBag() {
         <div className="mx-auto">
           <h3>your Bag have {wishlist.length} item</h3>
         </div>
-      </div>
+      </div> */}
     
       {wishlist.map((product) => {
         return (

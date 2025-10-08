@@ -22,7 +22,7 @@ export function Card({ id, name, description, MRP, img }) {
       <hr class="card-divider" />
       <div class="card-footer">
         <div class="card-price">
-          <span>$</span> {MRP}
+          <span>$</span> {MRP.toFixed(2)}
         </div>
         {isAddingtoCart === false ? (
           <button

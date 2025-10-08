@@ -9,67 +9,85 @@ export function Header() {
     totalCartItem += item.quantity;
   });
   return (
-    <div
-      className="p-2 mb-4 flex justify-around items-center"
-      style={{ backgroundColor: "#2874F0" }}
-    >
-      <div>
-        {/* <h2>Flipkart</h2> */}
-        <img
-          src="https://www.freepnglogos.com/uploads/flipkart-logo-png/flipkart-com-logo-internet-ltd-state-of-kerala-10.png"
-          alt=""
-          className="h-12"
-        />
+    <nav className="bg-white shadow-lg mb-7 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex items-center">
+            <div className="text-2xl font-bold text-slate-800">Amazon</div>
+          </div>
+          <div className="hidden md:flex space-x-8">
+            <a
+              href="#"
+              className="text-gray-700 hover:text-slate-800 transition-colors"
+              onClick={() => {
+                showCurrentPage("homePage");
+              }}
+            >
+              Home
+            </a>
+            <a
+              href="#"
+              className="text-gray-700 hover:text-slate-800 transition-colors"
+              onClick={() => {
+                showCurrentPage("sports");
+                handlePageProducts("Sports");
+              }}
+            >
+              Sports
+            </a>
+            <a
+              href="#"
+              className="text-gray-700 hover:text-slate-800 transition-colors"
+              onClick={() => {
+                showCurrentPage("electronics");
+                handlePageProducts("Electronics");
+              }}
+            >
+              Electronics
+            </a>
+            <a
+              href="#"
+              className="text-gray-700 hover:text-slate-800 transition-colors"
+              onClick={() => {
+                showCurrentPage("generalProducts");
+                handlePageProducts("General");
+              }}
+            >
+              General
+            </a>
+          </div>
+          <div className="flex items-center space-x-4">
+            {/* <button className="text-gray-700 hover:text-slate-800 transition-colors">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </button> */}
+            <button
+              className="myBtn text-gray-700 hover:text-slate-800 transition-colors relative"
+              onClick={() => showCurrentPage("cartItems")}
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEYJWy438DWyVWOnvbw1Aydy8-VNEbQ_B592E3Pste2GYBetOTs142mx9-QOEBZ3dQc&usqp=CAU"
+                alt="cart"
+                className="h-10"
+              />
+              <span className={`absolute -top-2 -right-2 text-gray text-xs rounded-full h-5 w-5 flex items-center justify-center ${wishlist.length && "bg-blue-200"}`}>
+                {wishlist.length === 0 ? "" : totalCartItem}
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="flex justify-around items-center">
-        <button
-          className="myBtn px-4 py-2 rounded"
-          onClick={() => {
-            showCurrentPage("homePage");
-          }}
-        >
-          Home
-        </button>
-        <button
-          className="myBtn px-4 py-2 bg-green-200 rounded"
-          onClick={() => {
-            showCurrentPage("sports");
-            handlePageProducts("Sports");
-          }}
-        >
-          Sports
-        </button>
-        <button
-          className="myBtn px-4 py-2 bg-red-200 rounded"
-          onClick={() => {
-            showCurrentPage("electronics");
-            handlePageProducts("Electronics");
-          }}
-        >
-          Electronics
-        </button>
-        <button
-          className="myBtn px-4 py-2 bg-gray-200 rounded"
-          onClick={() => {
-            showCurrentPage("generalProducts");
-            handlePageProducts("General");
-          }}
-        >
-          General
-        </button>
-      </div>
-      <div>
-        <button className="myBtn" onClick={() => showCurrentPage("cartItems")}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEYJWy438DWyVWOnvbw1Aydy8-VNEbQ_B592E3Pste2GYBetOTs142mx9-QOEBZ3dQc&usqp=CAU"
-            alt="cart"
-            className="h-12"
-          />
-          <p className="text-white">
-            {wishlist.length === 0 ? "Cart" : totalCartItem}
-          </p>
-        </button>
-      </div>
-    </div>
+    </nav>
   );
 }
