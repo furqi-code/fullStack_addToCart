@@ -3,11 +3,11 @@ import { useContext } from "react";
 import {ProductContext} from "../store/productContext"
 
 export function ElectronicsProds() {
-  const { productList, showCurrentPage } = useContext(ProductContext);
+  const { productList, showSelectedPage } = useContext(ProductContext);
   return (
     <>
       <div className="flex justify-center items-center mb-4" style={{ width: "355px" }}>
-        <button className="myBtn" onClick={() => showCurrentPage("homePage")}>
+        <button className="myBtn" onClick={() => showSelectedPage("homePage")}>
           <img
             src="https://cdn-icons-png.flaticon.com/512/9312/9312240.png"
             alt=""

@@ -12,7 +12,7 @@ export function CartItem({ ...product }) {
   return (
     <div className="flex justify-between gap-14 py-8">
       <div>
-        <img src={product.img} alt={product.name} className="w-236 object-contain" />
+        <img src={product.img} alt={product.name} className="w-150 object-contain" />
       </div>
       <div>
         <p className="text-lg">{product.description}</p>

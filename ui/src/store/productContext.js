@@ -10,7 +10,7 @@ import { ElectronicsProds } from "../components/electronicsPage";
 export const ProductContext = createContext({
   productList: [],
   wishlist: [],
-  showCurrentPage: () => {},
+  showSelectedPage: () => {},
   handlePageProducts: () => {},
   addToCart: () => {},
   removefromCart: () => {},
@@ -32,10 +32,10 @@ function reducer(state, action) {
         wishlist: [...state.wishlist, action.selectedItem],
       };
 
-    case "showCurrentPage":
+    case "showSelectedPage":
       return {
         ...state,
-        showSelectedPage: action.showPage,
+        showCurrentPage: action.showPage,
       };
 
     case "removeBagItem":
@@ -95,7 +95,7 @@ export function ProductContextProvider({ children }) {
   const [flipkart, dispatch] = useReducer(reducer, {
     productList: [], // calling api to get productList
     wishlist: [],
-    showSelectedPage: "homePage",
+    showCurrentPage: "homePage",
   });
   let content;
   console.log("wishlist Array \n", flipkart.wishlist);
@@ -115,9 +115,9 @@ export function ProductContextProvider({ children }) {
     }
   };
 
-  const showCurrentPage = (showPage) => {
+  const showSelectedPage = (showPage) => {
     dispatch({
-      type: "showCurrentPage",
+      type: "showSelectedPage",
       showPage,
     });
   };
@@ -162,11 +162,11 @@ export function ProductContextProvider({ children }) {
       });
   };
 
-  if (flipkart.showSelectedPage === "cartItems") content = <ShowBag />;
-  else if (flipkart.showSelectedPage === "sports") content = <SportsProducts />;
-  else if (flipkart.showSelectedPage === "electronics") content = <ElectronicsProds />;
-  else if (flipkart.showSelectedPage === "generalProducts") content = <GeneralProducts />;
-  else if (flipkart.showSelectedPage === "homePage") content = <HomePage />;
+  if (flipkart.showCurrentPage === "cartItems") content = <ShowBag />;
+  else if (flipkart.showCurrentPage === "sports") content = <SportsProducts />;
+  else if (flipkart.showCurrentPage === "electronics") content = <ElectronicsProds />;
+  else if (flipkart.showCurrentPage === "generalProducts") content = <GeneralProducts />;
+  else if (flipkart.showCurrentPage === "homePage") content = <HomePage />;
 
   return (
     <ProductContext
@@ -176,7 +176,7 @@ export function ProductContextProvider({ children }) {
         handlePageProducts: handlePageProducts,
         addToCart: collectItems,
         removefromCart: removeBagItem,
-        showCurrentPage: showCurrentPage,
+        showSelectedPage: showSelectedPage,
         increaseQnty: increaseQnty,
         decreaseQnty: decreaseQnty,
       }}

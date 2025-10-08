@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ProductContext } from "../store/productContext";
 
 export function Header() {
-  const { handlePageProducts, showCurrentPage, wishlist } =
+  const { handlePageProducts, showSelectedPage, wishlist } =
     useContext(ProductContext);
   let totalCartItem = 0;
   wishlist.forEach((item) => {
@@ -20,7 +20,7 @@ export function Header() {
               href="#"
               className="text-gray-700 hover:text-slate-800 transition-colors"
               onClick={() => {
-                showCurrentPage("homePage");
+                showSelectedPage("homePage");
               }}
             >
               Home
@@ -29,7 +29,7 @@ export function Header() {
               href="#"
               className="text-gray-700 hover:text-slate-800 transition-colors"
               onClick={() => {
-                showCurrentPage("sports");
+                showSelectedPage("sports");
                 handlePageProducts("Sports");
               }}
             >
@@ -39,7 +39,7 @@ export function Header() {
               href="#"
               className="text-gray-700 hover:text-slate-800 transition-colors"
               onClick={() => {
-                showCurrentPage("electronics");
+                showSelectedPage("electronics");
                 handlePageProducts("Electronics");
               }}
             >
@@ -49,7 +49,7 @@ export function Header() {
               href="#"
               className="text-gray-700 hover:text-slate-800 transition-colors"
               onClick={() => {
-                showCurrentPage("generalProducts");
+                showSelectedPage("generalProducts");
                 handlePageProducts("General");
               }}
             >
@@ -74,7 +74,7 @@ export function Header() {
             </button> */}
             <button
               className="myBtn text-gray-700 hover:text-slate-800 transition-colors relative"
-              onClick={() => showCurrentPage("cartItems")}
+              onClick={() => showSelectedPage("cartItems")}
             >
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdEYJWy438DWyVWOnvbw1Aydy8-VNEbQ_B592E3Pste2GYBetOTs142mx9-QOEBZ3dQc&usqp=CAU"
