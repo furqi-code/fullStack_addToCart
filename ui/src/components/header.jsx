@@ -55,6 +55,15 @@ export function Header() {
             >
               General
             </a>
+            <a
+              href="#"
+              className="text-gray-700 hover:text-slate-800 transition-colors"
+              onClick={() => {
+                showSelectedPage("addItem");
+              }}
+            >
+              Add Item
+            </a>
           </div>
           <div className="flex items-center space-x-4">
             {/* <button className="text-gray-700 hover:text-slate-800 transition-colors">

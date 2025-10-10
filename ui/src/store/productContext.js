@@ -2,10 +2,10 @@ import axios from "axios";
 import { useReducer, createContext, useEffect } from "react";
 import { ShowBag } from "../components/showBag";
 import { HomePage } from "../components/homepage";
-import { Header } from "../components/header";
 import { SportsProducts } from "../components/sportsPage";
 import { GeneralProducts } from "../components/generalPage";
 import { ElectronicsProds } from "../components/electronicsPage";
+import { ItemInput } from "../components/inputForm";
 
 export const ProductContext = createContext({
   productList: [],
@@ -16,6 +16,7 @@ export const ProductContext = createContext({
   removefromCart: () => {},
   increaseQnty: () => {},
   decreaseQnty: () => {},
+  addItem: () => {},
 });
 
 function reducer(state, action) {
@@ -143,6 +144,23 @@ export function ProductContextProvider({ children }) {
     });
   };
 
+  const addItem = (product) => {
+    axios({
+      method: "POST",
+      url: "http://localhost:1111/products",
+      data: {
+        product,
+      },
+    })
+    .then((response) => {
+      console.log("Product added:", response.data);
+      // showSelectedPage(product.category); // not rendering that particular page
+    })
+    .catch((err) => {
+      console.log(`couldnt insert this product ${product.name}`, err);
+    });
+  }
+
   const handlePageProducts = (category) => {
     axios({
       method: "GET",
@@ -151,21 +169,22 @@ export function ProductContextProvider({ children }) {
         category,
       },
     })
-      .then((response) => {
-        dispatch({
-          type: "getProductList",
-          products: response.data,
-        });
-      })
-      .catch((err) => {
-        console.log(`couldnt get products of ${category} page`, err);
+    .then((response) => {
+      dispatch({
+        type: "getProductList",
+        products: response.data,
       });
+    })
+    .catch((err) => {
+      console.log(`couldnt get products of ${category} page`, err);
+    });
   };
 
   if (flipkart.showCurrentPage === "cartItems") content = <ShowBag />;
   else if (flipkart.showCurrentPage === "sports") content = <SportsProducts />;
   else if (flipkart.showCurrentPage === "electronics") content = <ElectronicsProds />;
   else if (flipkart.showCurrentPage === "generalProducts") content = <GeneralProducts />;
+  else if (flipkart.showCurrentPage === "addItem") content = <ItemInput />;
   else if (flipkart.showCurrentPage === "homePage") content = <HomePage />;
 
   return (
@@ -179,9 +198,10 @@ export function ProductContextProvider({ children }) {
         showSelectedPage: showSelectedPage,
         increaseQnty: increaseQnty,
         decreaseQnty: decreaseQnty,
+        addItem: addItem,
       }}
     >
-      <Header></Header>
+      {children}
       {content}
     </ProductContext>
   );

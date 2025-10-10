@@ -3,7 +3,6 @@ const app = express();
 const PORT = 1111;
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const {executeQuery} = require("./mySqldb/Query");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -13,17 +12,10 @@ app.use(
   })
 );
 
-app.get("/products", async (req, res) => {
-  try{
-    const products = await executeQuery(`select * from products where category = ?`, req.query.category);
-    res.status(200).send(products);
-  }catch(err){
-    console.log("Error fetching products", err);
-    res.status(500).send({
-      message: err.message ? err.message : "Something went wrong"
-    })
-  }
-});
+// Local module
+const item_operations = require("./router/productCrud");
+
+app.use("/products", item_operations);
 
 
 app.listen(PORT, () => {
